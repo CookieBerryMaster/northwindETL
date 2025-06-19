@@ -11,8 +11,8 @@
   DTS:LocaleID="6154"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{0AFE8B4D-60D4-4D92-B841-54CBD1F01FAB}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{8C550B5F-B22F-4045-9F4D-952CF521906A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -25,7 +25,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=CELESTE;Initial Catalog=db_northwind;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{A0EBD346-337E-41E4-A71A-A95B9B441E64}CELESTE.db_northwind;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;Initial Catalog=db_northwind;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{A0EBD346-337E-41E4-A71A-A95B9B441E64}CELESTE.db_northwind;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -37,7 +37,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=CELESTE;Initial Catalog=Northwind_DW;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{1582C020-3EA0-44C0-B5C4-568581C24EEA}CELESTE.Northwind_DW;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;Initial Catalog=Northwind_DW;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{1582C020-3EA0-44C0-B5C4-568581C24EEA}CELESTE.Northwind_DW;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -2667,9 +2667,7 @@ where [refTable].[ShipperID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-16.50265625,10.85107421875,33.0053125,9.7978515625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2692,7 +2690,7 @@ where [refTable].[ShipperID] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-128.09240234375,17.15234375,256.1848046875,12.1953125"
+              BoundingBox="-106.8890234375,17.15234375,213.778046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2727,9 +2725,7 @@ where [refTable].[ShipperID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-16.42453125,13.85107421875,32.8490625,9.7978515625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2752,7 +2748,7 @@ where [refTable].[ShipperID] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-128.09240234375,11.15234375,256.1848046875,12.1953125"
+              BoundingBox="-106.8890234375,11.15234375,213.778046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2787,9 +2783,7 @@ where [refTable].[ShipperID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-13.77265625,16.85107421875,27.5453125,9.7978515625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2812,7 +2806,7 @@ where [refTable].[ShipperID] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-125.36240234375,11.15234375,250.7248046875,12.1953125"
+              BoundingBox="-106.8890234375,11.15234375,213.778046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2847,9 +2841,7 @@ where [refTable].[ShipperID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-13.6994140625,16.85107421875,27.398828125,9.7978515625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2872,7 +2864,7 @@ where [refTable].[ShipperID] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-125.36240234375,11.15234375,250.7248046875,12.1953125"
+              BoundingBox="-106.8890234375,11.15234375,213.778046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

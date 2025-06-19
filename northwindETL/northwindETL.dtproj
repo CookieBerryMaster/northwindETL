@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">CELESTE</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAW799RjlhREW2vyvmJWXhvAAAAAACAAAAAAAQZgAAAAEAACAAAAABcnCwPvTNVLHI/3Bqj2169xQWrVujx0iDePqvdiBx/QAAAAAOgAAAAAIAACAAAADJCOuBI+RqikXKsN171ln8AFUGObmdqRQM/h8DLAyJHpAAAAD8Lp8Zr0iB913IJKjHNeKMCY/3Tg9txXp4wF6BPgLaC/b5geWK3yVsqPXYdlHS8wuGxpbfQW/Qbvxi4nIwUhl+rmxTckAH41g+u+BwMXLQ3/rKWKD9kgDxFRoQ7CB0uteCrsKkMIIUra4gnIX4Uw/OJeupMR7L+IPd8eIWR6ed/mkuAWV/NVE8tFAvmn8WJAZAAAAAjG3TSjUjf/zfbFHJS1V5JvKXwlu+499yq0X6TVXyE/D2zm1nKuzMPk8qgo+3TSx3U+uPQ7cmh6L7FTZETkGowA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAW799RjlhREW2vyvmJWXhvAAAAAACAAAAAAAQZgAAAAEAACAAAAAyTSb338Du+Q64R0M/N2CGjUS8vKpzuJQnCqT2q75zyAAAAAAOgAAAAAIAACAAAADCMP39p+GRwcSikrVLgNj90z2FADltcqzx3e21zO34RZAAAABKl3smkYMAgCZ8Mawh3wbmlokHSFbPkghrg1X1BUqqqApx8QZViMBYjx/+ggltVA8AgxdSYorNqWF41dNvhI8OdhZimgOjeUuKdSJjV6ogC8aKXNFNqv/rm/svLFDzagQ3Sh/CfRqYZLI0o4AG7h2RpmqFQ8Qpd2AUrDPkKS+dGFYJy/YXEoE/j4HFJRccmhlAAAAAqD23LwnHXNs30k8z4DIhP6nPDPfWb0623VsdDHvfkDh3/Do85gsMPR7s6Pik99ceD2Ky6YoAhITMfz/v+MDqPw==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -42,10 +42,10 @@
                 <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{31967E27-5C27-448A-8651-5E7B283E79E2}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{F713ACDA-5688-41C0-BE40-612739C27612}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -78,7 +78,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=CELESTE;Initial Catalog=db_northwind;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{A0EBD346-337E-41E4-A71A-A95B9B441E64}CELESTE.db_northwind;Auto Translate=False;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=.;Initial Catalog=db_northwind;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{A0EBD346-337E-41E4-A71A-A95B9B441E64}CELESTE.db_northwind;</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -182,7 +182,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">CELESTE</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">.</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -226,7 +226,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=CELESTE;Initial Catalog=Northwind_DW;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{1582C020-3EA0-44C0-B5C4-568581C24EEA}CELESTE.Northwind_DW;Auto Translate=False;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=.;Initial Catalog=Northwind_DW;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{1582C020-3EA0-44C0-B5C4-568581C24EEA}CELESTE.Northwind_DW;</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -330,7 +330,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">CELESTE</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">.</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
