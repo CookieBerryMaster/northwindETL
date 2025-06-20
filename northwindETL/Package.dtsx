@@ -11,8 +11,8 @@
   DTS:LocaleID="6154"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="32"
-  DTS:VersionGUID="{6C518BD1-6486-4334-BE47-5F46102EADCD}">
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{3F8D1075-F577-4C6A-B97D-66AABBDEF14F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -47,7 +47,6 @@
       DTS:refId="Package\Load Dimension Tables"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Tarea Flujo de datos"
-      DTS:Disabled="True"
       DTS:DTSID="{87859068-861A-4B68-B03F-45C7E8506B1D}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -2613,6 +2612,23 @@ where [refTable].[ShipperID] = ?</property>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar SQL"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{A9C65EBB-5BF6-4A1F-A6D0-B8200FB2D2F9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar SQL"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1582C020-3EA0-44C0-B5C4-568581C24EEA}"
+          SQLTask:SqlStatementSource="INSERT INTO dbo.DimDate (&#xA;    DateKey, [Date], [Year], Quarter, [Month], [Day], [Week], DayName, MonthName&#xA;)&#xA;SELECT DISTINCT&#xA;    CONVERT(INT, FORMAT(CAST(OrderDate AS DATE), 'yyyyMMdd')) AS DateKey,&#xA;    CAST(OrderDate AS DATE) AS [Date],&#xA;    YEAR(OrderDate) AS [Year],&#xA;    DATEPART(QUARTER, OrderDate) AS Quarter,&#xA;    MONTH(OrderDate) AS [Month],&#xA;    DAY(OrderDate) AS [Day],&#xA;    DATEPART(WEEK, OrderDate) AS [Week],&#xA;    DATENAME(WEEKDAY, OrderDate) AS DayName,&#xA;    DATENAME(MONTH, OrderDate) AS MonthName&#xA;FROM db_northwind.dbo.Orders&#xA;WHERE OrderDate IS NOT NULL&#xA;AND NOT EXISTS (&#xA;    SELECT 1 FROM dbo.DimDate d&#xA;    WHERE d.[Date] = CAST(db_northwind.dbo.Orders.OrderDate AS DATE)&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Tarea Flujo de datos"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Tarea Flujo de datos"
@@ -4060,11 +4076,15 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
         <NodeLayout
           Size="194,42"
           Id="Package\Load Dimension Tables"
-          TopLeft="94,35" />
+          TopLeft="259,43" />
         <NodeLayout
           Size="180,42"
           Id="Package\Tarea Flujo de datos"
-          TopLeft="322,29" />
+          TopLeft="487,37" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Tarea Ejecutar SQL"
+          TopLeft="61,43" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -4568,7 +4588,9 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-23.3751171875,19.0234375,46.750234375,11.453125"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4591,7 +4613,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-59.2297377232145,5,199.638046875,12.1953125"
+              BoundingBox="-87.4081166294645,5,255.9948046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4615,7 +4637,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-80.0690234375,5,199.638046875,12.1953125"
+              BoundingBox="-108.24740234375,5,255.9948046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4639,7 +4661,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-99.8190234375,12.77734375,199.638046875,12.1953125"
+              BoundingBox="-127.99740234375,12.77734375,255.9948046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4663,7 +4685,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-99.8190234375,14.65234375,199.638046875,12.1953125"
+              BoundingBox="-127.99740234375,14.65234375,255.9948046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4686,7 +4708,9 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="5.01124644886374,5,46.750234375,11.453125"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4709,7 +4733,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-51.4083091517855,5,199.638046875,12.1953125"
+              BoundingBox="-79.5866880580355,5,255.9948046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
