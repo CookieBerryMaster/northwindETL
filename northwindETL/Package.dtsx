@@ -11,11 +11,23 @@
   DTS:LocaleID="6154"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="60"
-  DTS:VersionGUID="{0C70AD7F-A652-4C52-B798-972AC5F76386}">
+  DTS:VersionBuild="67"
+  DTS:VersionGUID="{2CA19BC8-967D-4A63-9C64-E97A22FA5E95}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{39A7A42B-00B3-4317-BBB2-CB9C2748AE03}"
+      DTS:ObjectName="Administrador de conexiones con Excel">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=D:\SSISLogs\ExportInserstions.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[CELESTE.db_northwind]"
       DTS:CreationName="OLEDB"
@@ -78,10 +90,336 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\Excel ensertion"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{FBE52597-95EA-4250-A7B8-AC6EBFEA49EB}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Excel ensertion"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Excel ensertion\Destino de Excel"
+              componentClassID="Microsoft.ExcelDestination"
+              contactInfo="Destino de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Destino de Excel"
+              name="Destino de Excel"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">Destino_de_Excel$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Excel ensertion\Destino de Excel.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de Excel">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel].Columns[ControlID]"
+                      cachedDataType="i4"
+                      cachedName="ControlID"
+                      externalMetadataColumnId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel].ExternalColumns[ControlID]"
+                      lineageId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[ControlID]" />
+                    <inputColumn
+                      refId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel].Columns[TableName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TableName"
+                      externalMetadataColumnId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel].ExternalColumns[TableName]"
+                      lineageId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[TableName]" />
+                    <inputColumn
+                      refId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel].Columns[RecordsInserted]"
+                      cachedDataType="i4"
+                      cachedName="RecordsInserted"
+                      externalMetadataColumnId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel].ExternalColumns[RecordsInserted]"
+                      lineageId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[RecordsInserted]" />
+                    <inputColumn
+                      refId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel].Columns[LoadDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LoadDate"
+                      externalMetadataColumnId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel].ExternalColumns[LoadDate]"
+                      lineageId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[LoadDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel].ExternalColumns[ControlID]"
+                      dataType="wstr"
+                      length="255"
+                      name="ControlID" />
+                    <externalMetadataColumn
+                      refId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel].ExternalColumns[TableName]"
+                      dataType="wstr"
+                      length="255"
+                      name="TableName" />
+                    <externalMetadataColumn
+                      refId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel].ExternalColumns[RecordsInserted]"
+                      dataType="wstr"
+                      length="255"
+                      name="RecordsInserted" />
+                    <externalMetadataColumn
+                      refId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel].ExternalColumns[LoadDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="LoadDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Excel ensertion\Destino de Excel.Outputs[Salida de error de destino de Excel]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de Excel"
+                  synchronousInputId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Excel ensertion\Destino de Excel.Outputs[Salida de error de destino de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Excel ensertion\Destino de Excel.Outputs[Salida de error de destino de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Excel ensertion\Destino de Excel.Outputs[Salida de error de destino de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Excel ensertion\Destino de Excel.Outputs[Salida de error de destino de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Excel ensertion\Origen de OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="Origen de OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM ctrl.ControlLoadData</property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Excel ensertion\Origen de OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CELESTE.Northwind_DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[CELESTE.Northwind_DW]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[ControlID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[ControlID]"
+                      lineageId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[ControlID]"
+                      name="ControlID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[TableName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[TableName]"
+                      length="100"
+                      lineageId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[TableName]"
+                      name="TableName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[RecordsInserted]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[RecordsInserted]"
+                      lineageId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[RecordsInserted]"
+                      name="RecordsInserted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[LoadDate]"
+                      lineageId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[LoadDate]"
+                      name="LoadDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[ControlID]"
+                      dataType="i4"
+                      name="ControlID" />
+                    <externalMetadataColumn
+                      refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[TableName]"
+                      dataType="wstr"
+                      length="100"
+                      name="TableName" />
+                    <externalMetadataColumn
+                      refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[RecordsInserted]"
+                      dataType="i4"
+                      name="RecordsInserted" />
+                    <externalMetadataColumn
+                      refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      name="LoadDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ControlID]"
+                      dataType="i4"
+                      lineageId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ControlID]"
+                      name="ControlID" />
+                    <outputColumn
+                      refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[TableName]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[TableName]"
+                      name="TableName" />
+                    <outputColumn
+                      refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[RecordsInserted]"
+                      dataType="i4"
+                      lineageId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[RecordsInserted]"
+                      name="RecordsInserted" />
+                    <outputColumn
+                      refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[LoadDate]"
+                      name="LoadDate" />
+                    <outputColumn
+                      refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Excel ensertion.Paths[Salida de origen de OLE DB]"
+              endId="Package\Excel ensertion\Destino de Excel.Inputs[Entrada de destino de Excel]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Excel ensertion\Origen de OLE DB.Outputs[Salida de origen de OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Insert in DimDate"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Tarea Ejecutar SQL"
-      DTS:Disabled="True"
       DTS:DTSID="{A9C65EBB-5BF6-4A1F-A6D0-B8200FB2D2F9}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -99,7 +437,6 @@
       DTS:refId="Package\Load Dimension Tables"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Tarea Flujo de datos"
-      DTS:Disabled="True"
       DTS:DTSID="{87859068-861A-4B68-B03F-45C7E8506B1D}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -2712,15 +3049,6 @@ where [refTable].[ShipperID] = ?</property>
                   Language="CSharp"
                   ReadOnlyVariables="System::ErrorDescription,System::SourceName">
                   <ProjectItem
-                    Name="Properties\Settings.settings"
-                    Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
-                  <ProjectItem
                     Name="Properties\Resources.resx"
                     Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
@@ -2840,6 +3168,35 @@ where [refTable].[ShipperID] = ?</property>
   </resheader>
 </root>]]></ProjectItem>
                   <ProjectItem
+                    Name="Properties\Settings.Designer.cs"
+                    Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_26d2b796bc574f64926ea01db3fde0d0.Properties.Settings.get_Default():ST_26d2b796bc574f64926ea01db3fde0d0.Properties.Sett" +
+    "ings")]
+
+namespace ST_26d2b796bc574f64926ea01db3fde0d0.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+                  <ProjectItem
                     Name="ScriptMain.cs"
                     Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
@@ -2926,33 +3283,39 @@ namespace ST_26d2b796bc574f64926ea01db3fde0d0
         #endregion
 
 
-		/// <summary>
+        /// <summary>
         /// This method is called when this script task executes in the control flow.
         /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
         /// To open Help, press F1.
         /// </summary>
-		public void Main()
-		{
-            // TODO: Add your code here
-
+        public void Main()
+        {
             try
-{
+            {
                 string nombreTarea = Dts.Variables["System::SourceName"].Value.ToString();
                 string errorDesc = Dts.Variables["System::ErrorDescription"].Value.ToString();
-                string ruta = @"C:\Users\Cami\OneDrive\Documentos\SSISLogs\errores.txt"""; // Aseg�rate que esta ruta exista
 
-                System.IO.File.AppendAllText(ruta, $"{DateTime.Now}: [{nombreTarea}] {errorDesc}{Environment.NewLine}");
+                string carpeta = @"D:\SSISLogs";
+                string archivo = System.IO.Path.Combine(carpeta, "errores.txt");
+
+                // Crear carpeta si no existe
+                if (!System.IO.Directory.Exists(carpeta))
+                {
+                    System.IO.Directory.CreateDirectory(carpeta);
+                }
+
+                // Guardar error en el archivo
+                string mensaje = $"{DateTime.Now}: [{nombreTarea}] {errorDesc}{Environment.NewLine}";
+                System.IO.File.AppendAllText(archivo, mensaje);
 
                 Dts.TaskResult = (int)ScriptResults.Success;
             }
-catch (Exception ex)
-{
-                MessageBox.Show("Error en el Script Task: " + ex.Message);
+            catch (Exception ex)
+            {
+                Dts.Events.FireError(0, "Script Task", ex.Message, "", 0);
                 Dts.TaskResult = (int)ScriptResults.Failure;
             }
-
         }
-
         #region ScriptResults declaration
         /// <summary>
         /// This enum provides a convenient shorthand within the scope of this class for setting the
@@ -3063,7 +3426,7 @@ catch (Exception ex)
     <msb:CodeName>ST_26d2b796bc574f64926ea01db3fde0d0</msb:CodeName>
     <msb:Language>msBuild</msb:Language>
     <msb:DisplayName>ST_26d2b796bc574f64926ea01db3fde0d0</msb:DisplayName>
-    <msb:ProjectId>{D04D7E1C-7941-4470-909F-205F69DBD3F2}</msb:ProjectId>
+    <msb:ProjectId>{B6238DC9-B674-4BF8-B601-F1E09A8DFA96}</msb:ProjectId>
   </msb:PropertyGroup>
   <msb:ItemGroup>
     <msb:Project Include="ST_26d2b796bc574f64926ea01db3fde0d0.csproj" />
@@ -3075,35 +3438,6 @@ catch (Exception ex)
     <msb:File Include="ScriptMain.cs" />
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
-                  <ProjectItem
-                    Name="Properties\Settings.Designer.cs"
-                    Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_26d2b796bc574f64926ea01db3fde0d0.Properties.Settings.get_Default():ST_26d2b796bc574f64926ea01db3fde0d0.Properties.Sett" +
-    "ings")]
-
-namespace ST_26d2b796bc574f64926ea01db3fde0d0.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
                   <ProjectItem
                     Name="Properties\AssemblyInfo.cs"
                     Encoding="UTF8"><![CDATA[using System.Reflection;
@@ -3134,6 +3468,15 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+                  <ProjectItem
+                    Name="Properties\Settings.settings"
+                    Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
                   <ProjectItem
                     Name="Properties\Resources.Designer.cs"
                     Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -3205,88 +3548,88 @@ namespace ST_26d2b796bc574f64926ea01db3fde0d0.Properties {
                   <BinaryItem
                     Name="ST_26d2b796bc574f64926ea01db3fde0d0.dll">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
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDANyjVWgAAAAAAAAAAOAAIiALATAAABIAAAAIAAAAAAAAVjAA
+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
-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
+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
-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
+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
-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
-BSIAyQAxBScA0QDNAywA2QACAzIAkQAsAzYA4QDSBToA6QDfAD8A8QCCBUMA+QDEBUoAyQCpBQEA
-eQB4ADYA8QB7BVAAAQHaBVYAcQBfBAYAkQBfBAYAEQGfAF0AEQHqBWYAmQBfBGwAuQBfBAYACAAU
-AIYACAAYAIsAKQBzAPMALgALAMsALgATANQALgAbAPMALgAjAPwALgArACUBLgAzACUBLgA7ACsB
-LgBDAPwALgBLADgBLgBTACUBLgBbAFYBQwBjAIsASQBzAPMAYQB7AIsAYwBrAIsAGwADAAEABAAD
-AAAATwS8AAAAGAHBAAAAlAXGAAIABAADAAIABQAFAAEABgAFAAIABwAHAASAAAABAAAAViR+VQAA
-AAAAAAEAAAAEAAAAAAAAAAAAAAB0AF8AAAAAABAAAAAAAAAAAAAAAH0ANQMAAAAABAAAAAAAAAAA
-AAAAdADWAwAAAAAQAAAAAAAAAAAAAAB9ADgAAAAAAAQAAAAAAAAAAAAAAHQASAUAAAAAAAAAAAEA
-AACwBAAABQACAAAAAFNUXzI2ZDJiNzk2YmM1NzRmNjQ5MjZlYTAxZGIzZmRlMGQwADxNb2R1bGU+
-AFN5c3RlbS5JTwBNaWNyb3NvZnQuU3FsU2VydmVyLk1hbmFnZWREVFMAdmFsdWVfXwBtc2Nvcmxp
-YgBkZWZhdWx0SW5zdGFuY2UAZ2V0X01lc3NhZ2UAVmFyaWFibGUAUnVudGltZVR5cGVIYW5kbGUA
-R2V0VHlwZUZyb21IYW5kbGUARmlsZQBEYXRlVGltZQBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5S
-dW50aW1lAGdldF9OZXdMaW5lAFR5cGUARmFpbHVyZQBnZXRfQ3VsdHVyZQBzZXRfQ3VsdHVyZQBy
-ZXNvdXJjZUN1bHR1cmUAVlNUQVJUU2NyaXB0T2JqZWN0TW9kZWxCYXNlAEFwcGxpY2F0aW9uU2V0
-dGluZ3NCYXNlAEVkaXRvckJyb3dzYWJsZVN0YXRlAENvbXBpbGVyR2VuZXJhdGVkQXR0cmlidXRl
-AERlYnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUARGVidWdnYWJsZUF0dHJpYnV0ZQBFZGl0b3JC
-cm93c2FibGVBdHRyaWJ1dGUAQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFy
-a0F0dHJpYnV0ZQBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9u
-QXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQ29tcGlsYXRpb25SZWxheGF0
-aW9uc0F0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRB
-dHRyaWJ1dGUAU1NJU1NjcmlwdFRhc2tFbnRyeVBvaW50QXR0cmlidXRlAEFzc2VtYmx5Q29tcGFu
-eUF0dHJpYnV0ZQBSdW50aW1lQ29tcGF0aWJpbGl0eUF0dHJpYnV0ZQBnZXRfVmFsdWUAdmFsdWUA
-U3lzdGVtLlJ1bnRpbWUuVmVyc2lvbmluZwBUb1N0cmluZwBNaWNyb3NvZnQuU3FsU2VydmVyLlNj
-cmlwdFRhc2sATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuVGFza3MuU2NyaXB0VGFzawBTY3JpcHRP
-YmplY3RNb2RlbABTeXN0ZW0uQ29tcG9uZW50TW9kZWwAU1RfMjZkMmI3OTZiYzU3NGY2NDkyNmVh
-MDFkYjNmZGUwZDAuZGxsAGdldF9JdGVtAFN5c3RlbQBFbnVtAHJlc291cmNlTWFuAFNjcmlwdE1h
-aW4AU3lzdGVtLkNvbmZpZ3VyYXRpb24AU3lzdGVtLkdsb2JhbGl6YXRpb24AU3lzdGVtLlJlZmxl
-Y3Rpb24ARXhjZXB0aW9uAEN1bHR1cmVJbmZvAGdldF9SZXNvdXJjZU1hbmFnZXIALmN0b3IALmNj
-dG9yAFN5c3RlbS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2VzAFN5
-c3RlbS5SZXNvdXJjZXMAU1RfMjZkMmI3OTZiYzU3NGY2NDkyNmVhMDFkYjNmZGUwZDAuUHJvcGVy
-dGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2luZ01vZGVzAFNUXzI2ZDJiNzk2YmM1NzRm
-NjQ5MjZlYTAxZGIzZmRlMGQwLlByb3BlcnRpZXMAZ2V0X1ZhcmlhYmxlcwBTZXR0aW5ncwBTeXN0
-ZW0uV2luZG93cy5Gb3JtcwBTdWNjZXNzAGdldF9EdHMAU2NyaXB0UmVzdWx0cwBDb25jYXQARm9y
-bWF0AE9iamVjdABnZXRfRGVmYXVsdABEaWFsb2dSZXN1bHQAc2V0X1Rhc2tSZXN1bHQARW52aXJv
-bm1lbnQAQXBwZW5kQWxsVGV4dABnZXRfTm93AFNob3cATWVzc2FnZUJveABnZXRfQXNzZW1ibHkA
-AAAlUwB5AHMAdABlAG0AOgA6AFMAbwB1AHIAYwBlAE4AYQBtAGUAADFTAHkAcwB0AGUAbQA6ADoA
-RQByAHIAbwByAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAb0MAOgBcAFUAcwBlAHIAcwBcAEMAYQBt
-AGkAXABPAG4AZQBEAHIAaQB2AGUAXABEAG8AYwB1AG0AZQBuAHQAbwBzAFwAUwBTAEkAUwBMAG8A
-ZwBzAFwAZQByAHIAbwByAGUAcwAuAHQAeAB0ACIAACN7ADAAfQA6ACAAWwB7ADEAfQBdACAAewAy
-AH0AewAzAH0AADNFAHIAcgBvAHIAIABlAG4AIABlAGwAIABTAGMAcgBpAHAAdAAgAFQAYQBzAGsA
-OgAgAABxUwBUAF8AMgA2AGQAMgBiADcAOQA2AGIAYwA1ADcANABmADYANAA5ADIANgBlAGEAMAAx
-AGQAYgAzAGYAZABlADAAZAAwAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMA
-ZQBzAAAAO09bWnTFBECxbZvn11CWbwAEIAEBCAMgAAEFIAEBEREEIAEBDgUgAQERVQYHAw4OEj0E
-IAASZQQgABJpBSABEm0cAyAAHAMgAA4EAAARcQMAAA4GAAIODh0cBQACAQ4OBQACDg4OBgABEYCF
-DggAARKAiRGAjQUgABKAkQcgAgEOEoCRCLd6XFYZNOCJCImEXc2AgMyRBAAAAAAEAQAAAAMGEk0D
-BhJRAwYSEAIGCAMGERQEAAASTQQAABJRBQABARJRBAAAEhADAAABBAgAEk0ECAASUQQIABIQCAEA
-CAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dzAQgBAAIAAAAAACgBACNTVF8yNmQy
-Yjc5NmJjNTc0ZjY0OTI2ZWEwMWRiM2ZkZTBkMAAABQEAAAAADAEAB0hQIEluYy4AAB0BABhDb3B5
-cmlnaHQgQCBIUCBJbmMuIDIwMjUAAEkBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuNwEAVA4U
-RnJhbWV3b3JrRGlzcGxheU5hbWUSLk5FVCBGcmFtZXdvcmsgNC43tAAAAM7K774BAAAAkQAAAGxT
-eXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwgVmVyc2lvbj00LjAuMC4w
-LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkjU3lzdGVt
-LlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQQURQQURQtAAAACwwAAAA
-AAAAAAAAAEYwAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4MAAAAAAAAAAAAAAAAF9Db3JEbGxN
-YWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAGgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAABY
+MAAAAAAAAEgAAAACAAUAsCEAALwNAAABAAAAAAAAAGwvAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABswBgDbAAAAAQAAEQIoEAAACm8RAAAKcgEAAHBvEgAACm8T
+AAAKbxQAAAoKAigQAAAKbxEAAApyJwAAcG8SAAAKbxMAAApvFAAACgtyWQAAcAwIcnEAAHAoFQAA
+Cg0IKBYAAAotBwgoFwAACiZyiQAAcBqNEgAAASUWKBgAAAqMHwAAAaIlFwaiJRgHoiUZKBkAAAqi
+KBoAAAoTBAkRBCgbAAAKAigQAAAKFm8cAAAK3jQTBQIoEAAACm8dAAAKFnKtAABwEQVvHgAACnLF
+AABwFm8fAAAKJgIoEAAAChdvHAAACt4AKgABEAAAAAAAAKamADQPAAABHgIoIAAACioeAighAAAK
+Kq5+AQAABC0ecscAAHDQAwAAAigiAAAKbyMAAApzJAAACoABAAAEfgEAAAQqGn4CAAAEKh4CgAIA
+AAQqGn4DAAAEKh4CKCUAAAoqLnMIAAAGgAMAAAQqAABCU0pCAQABAAAAAAAMAAAAdjQuMC4zMDMx
+OQAAAAAFAGwAAAAwBAAAI34AAJwEAAAcBgAAI1N0cmluZ3MAAAAAuAoAADwBAAAjVVMA9AsAABAA
+AAAjR1VJRAAAAAQMAAC4AQAAI0Jsb2IAAAAAAAAAAgAAAVcdogEJAwAAAPoBMwAWAAABAAAAJgAA
+AAUAAAAGAAAACQAAAAEAAAAlAAAAAgAAABAAAAABAAAAAgAAAAMAAAAEAAAAAQAAAAQAAAABAAAA
+AQAAAAAAsgMBAAAAAAAGAF0CuAQGAOwCuAQGAKkBpQQPACwFAAAGANYBMAQGAEACMAQGACECMAQG
+ANMCMAQGAH0CMAQGAJYCMAQGAO0BMAQGAAgCGgMKALECYQMKACgBYQMGAEIE4wMGAOoD4wMGAIwB
+pQQGALgF4wMGAGoE2AQGAEwEGwQOAFwBnAMOAL0BnAMOAEQBBgQGAHEBuAQKAIoDYQMSAG4FvwAS
+AIQAvwAGAD0DLgAGAA8GLgAGAFgELgAGALYA4wMGANoF4wMGADYD4wMGALEALgAKAHoEYQMGAPMA
+4wMGAI0A4wMGAAAGMAQAAAAAJQAAAAAAAQABAAEAEAD7AwEAOQABAAEAAAAQAN8EOwVJAAEAAwAA
+ARAAeAU7BV0AAwAHAAMBAACRBQAAQQAEAAoAEQDvA6YAEQAYAaoAEQBoAK4ABgZXALIAVoCBBbUA
+VoD4ALUAUCAAAAAAhgABBAYAAQBIIQAAAACGGJgEBgABAFAhAAAAAIMYmAQGAAEAWCEAAAAAkwhm
+BLkAAQCEIQAAAACTCAABvgABAIshAAAAAJMIDAHDAAEAkyEAAAAAlgi/BckAAgCaIQAAAACGGJgE
+BgACAKIhAAAAAJEYngTOAAIAAAABABQDCQCYBAEAEQCYBAYAGQCYBAoAKQCYBBAAMQCYBBAAOQCY
+BBAAQQCYBBAASQCYBBAAUQCYBBAAWQCYBBAAYQCYBBAAaQCYBAYAiQCYBAYAsQCYBBUAwQCYBAYA
+cQCJBSUAyQBqBSoA0QDaAy8A2QAKAzUAkQA0AzkA4QDrAD0A6QCqBUMA6QAJBkgA+QD0BU4AAQHf
+AFMACQGxBVcAEQHmBV4AyQDLBQEAyQCfBWQAeQB4ADkAGQGOBGoAcQCYBAYAkQCYBAYAIQGfAHMA
+IQH8BXwAmQCYBIIAuQCYBAYACAAUAJwACAAYAKEAKQBzAAkBLgALAOEALgATAOoALgAbAAkBLgAj
+ABIBLgArADsBLgAzADsBLgA7AEEBLgBDABIBLgBLAE4BLgBTADsBLgBbAGwBQwBjAKEASQBzAAkB
+YQB7AKEAYwBrAKEAGwADAAEABAADAAAAagTSAAAAIAHXAAAAwwXcAAIABAADAAIABQAFAAEABgAF
+AAIABwAHAASAAAABAAAAViSrYAAAAAAAAAEAAAAEAAAAAAAAAAAAAACKAF8AAAAAABAAAAAAAAAA
+AAAAAJMAQgMAAAAABAAAAAAAAAAAAAAAigDjAwAAAAAQAAAAAAAAAAAAAACTADgAAAAAAAAAAAAB
+AAAA6QQAAAUAAgAAAAAAAFNUXzI2ZDJiNzk2YmM1NzRmNjQ5MjZlYTAxZGIzZmRlMGQwADxNb2R1
+bGU+AFN5c3RlbS5JTwBNaWNyb3NvZnQuU3FsU2VydmVyLk1hbmFnZWREVFMAdmFsdWVfXwBtc2Nv
+cmxpYgBkZWZhdWx0SW5zdGFuY2UAZ2V0X01lc3NhZ2UAVmFyaWFibGUAUnVudGltZVR5cGVIYW5k
+bGUAR2V0VHlwZUZyb21IYW5kbGUARmlsZQBEYXRlVGltZQBNaWNyb3NvZnQuU3FsU2VydmVyLkR0
+cy5SdW50aW1lAGdldF9OZXdMaW5lAENvbWJpbmUAVHlwZQBGYWlsdXJlAGdldF9DdWx0dXJlAHNl
+dF9DdWx0dXJlAHJlc291cmNlQ3VsdHVyZQBWU1RBUlRTY3JpcHRPYmplY3RNb2RlbEJhc2UAQXBw
+bGljYXRpb25TZXR0aW5nc0Jhc2UARWRpdG9yQnJvd3NhYmxlU3RhdGUAQ29tcGlsZXJHZW5lcmF0
+ZWRBdHRyaWJ1dGUARGVidWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0ZQBEZWJ1Z2dhYmxlQXR0cmli
+dXRlAEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBBc3NlbWJseVRpdGxlQXR0cmlidXRlAEFzc2Vt
+Ymx5VHJhZGVtYXJrQXR0cmlidXRlAFRhcmdldEZyYW1ld29ya0F0dHJpYnV0ZQBBc3NlbWJseUNv
+bmZpZ3VyYXRpb25BdHRyaWJ1dGUAQXNzZW1ibHlEZXNjcmlwdGlvbkF0dHJpYnV0ZQBDb21waWxh
+dGlvblJlbGF4YXRpb25zQXR0cmlidXRlAEFzc2VtYmx5UHJvZHVjdEF0dHJpYnV0ZQBBc3NlbWJs
+eUNvcHlyaWdodEF0dHJpYnV0ZQBTU0lTU2NyaXB0VGFza0VudHJ5UG9pbnRBdHRyaWJ1dGUAQXNz
+ZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0cmlidXRlAGdldF9W
+YWx1ZQB2YWx1ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAFRvU3RyaW5nAFBhdGgATWljcm9z
+b2Z0LlNxbFNlcnZlci5TY3JpcHRUYXNrAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlRhc2tzLlNj
+cmlwdFRhc2sAU2NyaXB0T2JqZWN0TW9kZWwAU3lzdGVtLkNvbXBvbmVudE1vZGVsAFNUXzI2ZDJi
+Nzk2YmM1NzRmNjQ5MjZlYTAxZGIzZmRlMGQwLmRsbABnZXRfSXRlbQBTeXN0ZW0ARW51bQByZXNv
+dXJjZU1hbgBTY3JpcHRNYWluAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxpemF0
+aW9uAFN5c3RlbS5SZWZsZWN0aW9uAEV4Y2VwdGlvbgBDdWx0dXJlSW5mbwBEaXJlY3RvcnlJbmZv
+AGdldF9SZXNvdXJjZU1hbmFnZXIARXZlbnRzT2JqZWN0V3JhcHBlcgBGaXJlRXJyb3IALmN0b3IA
+LmNjdG9yAFN5c3RlbS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2Vz
+AFN5c3RlbS5SZXNvdXJjZXMAU1RfMjZkMmI3OTZiYzU3NGY2NDkyNmVhMDFkYjNmZGUwZDAuUHJv
+cGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2luZ01vZGVzAFNUXzI2ZDJiNzk2YmM1
+NzRmNjQ5MjZlYTAxZGIzZmRlMGQwLlByb3BlcnRpZXMAZ2V0X1ZhcmlhYmxlcwBTZXR0aW5ncwBT
+dWNjZXNzAGdldF9EdHMAU2NyaXB0UmVzdWx0cwBnZXRfRXZlbnRzAEV4aXN0cwBGb3JtYXQAT2Jq
+ZWN0AGdldF9EZWZhdWx0AHNldF9UYXNrUmVzdWx0AEVudmlyb25tZW50AEFwcGVuZEFsbFRleHQA
+Z2V0X05vdwBnZXRfQXNzZW1ibHkAQ3JlYXRlRGlyZWN0b3J5AAAAAAAlUwB5AHMAdABlAG0AOgA6
+AFMAbwB1AHIAYwBlAE4AYQBtAGUAADFTAHkAcwB0AGUAbQA6ADoARQByAHIAbwByAEQAZQBzAGMA
+cgBpAHAAdABpAG8AbgAAF0QAOgBcAFMAUwBJAFMATABvAGcAcwAAF2UAcgByAG8AcgBlAHMALgB0
+AHgAdAAAI3sAMAB9ADoAIABbAHsAMQB9AF0AIAB7ADIAfQB7ADMAfQAAF1MAYwByAGkAcAB0ACAA
+VABhAHMAawAAAQBxUwBUAF8AMgA2AGQAMgBiADcAOQA2AGIAYwA1ADcANABmADYANAA5ADIANgBl
+AGEAMAAxAGQAYgAzAGYAZABlADAAZAAwAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8A
+dQByAGMAZQBzAAAAAABLaRb5FTSPRqxzZTfdPjo6AAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFV
+CQcGDg4ODg4SPQQgABJlBCAAEmkFIAESbRwDIAAcAyAADgUAAg4ODgQAAQIOBQABEnkOBAAAEX0D
+AAAOBgACDg4dHAUAAgEODgUgABKAjQggBQIIDg4OCAgAARKAkRGAlQUgABKAmQcgAgEOEoCZCLd6
+XFYZNOCJCImEXc2AgMyRBAAAAAAEAQAAAAMGEk0DBhJRAwYSEAIGCAMGERQEAAASTQQAABJRBQAB
+ARJRBAAAEhADAAABBAgAEk0ECAASUQQIABIQCAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0
+aW9uVGhyb3dzAQgBAAIAAAAAACgBACNTVF8yNmQyYjc5NmJjNTc0ZjY0OTI2ZWEwMWRiM2ZkZTBk
+MAAABQEAAAAADAEAB0hQIEluYy4AAB0BABhDb3B5cmlnaHQgQCBIUCBJbmMuIDIwMjUAAEkBABou
+TkVURnJhbWV3b3JrLFZlcnNpb249djQuNwEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUSLk5FVCBG
+cmFtZXdvcmsgNC43AAC0AAAAzsrvvgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VS
+ZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGlj
+S2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJj
+ZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAATDAAAAAAAAAAAAAAZjAAAAAgAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAFgwAAAAAAAAAAAAAAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAA
+EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -3295,14 +3638,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAA
 AEgAAABYQAAANgQAAAAAAAAAAAAANgQ0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8A
-AAAAAL0E7/4AAAEAAAABAH5VViQAAAEAflVWJD8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABE
+AAAAAL0E7/4AAAEAAAABAKtgViQAAAEAq2BWJD8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABE
 AAAAAQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8A
 bgAAAAAAAACwBJYDAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAHIDAAABADAAMAAw
 ADAAMAA0AGIAMAAAABoAAQABAEMAbwBtAG0AZQBuAHQAcwAAAAAAAAAwAAgAAQBDAG8AbQBwAGEA
 bgB5AE4AYQBtAGUAAAAAAEgAUAAgAEkAbgBjAC4AAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBp
 AHAAdABpAG8AbgAAAAAAUwBUAF8AMgA2AGQAMgBiADcAOQA2AGIAYwA1ADcANABmADYANAA5ADIA
 NgBlAGEAMAAxAGQAYgAzAGYAZABlADAAZAAwAAAAPgAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBu
-AAAAAAAxAC4AMAAuADkAMwAwADIALgAyADEAOAA4ADYAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEA
+AAAAAAAxAC4AMAAuADkAMwAwADIALgAyADQANwA0ADcAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEA
 bABOAGEAbQBlAAAAUwBUAF8AMgA2AGQAMgBiADcAOQA2AGIAYwA1ADcANABmADYANAA5ADIANgBl
 AGEAMAAxAGQAYgAzAGYAZABlADAAZAAwAC4AZABsAGwAAABWABkAAQBMAGUAZwBhAGwAQwBvAHAA
 eQByAGkAZwBoAHQAAABDAG8AcAB5AHIAaQBnAGgAdAAgAEAAIABIAFAAIABJAG4AYwAuACAAMgAw
@@ -3311,15 +3654,15 @@ AQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAAUwBUAF8AMgA2AGQAMgBiADcAOQA2
 AGIAYwA1ADcANABmADYANAA5ADIANgBlAGEAMAAxAGQAYgAzAGYAZABlADAAZAAwAC4AZABsAGwA
 AABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAAAFMAVABfADIANgBkADIAYgA3ADkANgBi
 AGMANQA3ADQAZgA2ADQAOQAyADYAZQBhADAAMQBkAGIAMwBmAGQAZQAwAGQAMAAAAEIADwABAFAA
-cgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AOQAzADAAMgAuADIAMQA4ADgANgAA
+cgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AOQAzADAAMgAuADIANAA3ADQANwAA
 AAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AOQAzADAA
-MgAuADIAMQA4ADgANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+MgAuADIANAA3ADQANwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAADAAAAFgwAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAADAAAAHgwAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -3600,7 +3943,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                       name="DateKey" />
                     <externalMetadataColumn
                       refId="Package\Load Fact Table\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Quantity]"
-                      dataType="i4"
+                      dataType="i2"
                       name="Quantity" />
                     <externalMetadataColumn
                       refId="Package\Load Fact Table\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[UnitPrice]"
@@ -3608,7 +3951,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                       name="UnitPrice" />
                     <externalMetadataColumn
                       refId="Package\Load Fact Table\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Discount]"
-                      dataType="r8"
+                      dataType="r4"
                       name="Discount" />
                     <externalMetadataColumn
                       refId="Package\Load Fact Table\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TotalAmount]"
@@ -5005,12 +5348,12 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
       DTS:To="Package\Control de Registros" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
-<!--If you manually edit this section and make a mistake, you can delete it. -->
-<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
 <Objects
   Version="8">
-  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
   <Package
     design-time-name="Package">
     <LayoutInfo>
@@ -5054,6 +5397,10 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Excel ensertion"
+          TopLeft="736,46" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -5177,7 +5524,9 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5199,7 +5548,9 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5221,7 +5572,9 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5243,7 +5596,9 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5505,7 +5860,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
         <NodeLayout
           Size="175,42"
           Id="Package\Load Fact Table\Destino de OLE DB"
-          TopLeft="1353.05844155844,285.418831168832" />
+          TopLeft="1404.72510822511,280.418831168832" />
         <NodeLayout
           Size="148,42"
           Id="Package\Load Fact Table\DimEmployee"
@@ -5525,7 +5880,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
         <NodeLayout
           Size="168,42"
           Id="Package\Load Fact Table\LookUpDuplicates"
-          TopLeft="906.805194805195,295.961038961039" />
+          TopLeft="958.471861471862,290.961038961039" />
         <NodeLayout
           Size="146,42"
           Id="Package\Load Fact Table\DimCustomer"
@@ -5537,21 +5892,21 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
         <NodeLayout
           Size="164,42"
           Id="Package\Load Fact Table\Recuento de filas"
-          TopLeft="1134,291.285714285714" />
+          TopLeft="1185.66666666667,286.285714285714" />
         <EdgeLayout
           Id="Package\Load Fact Table.Paths[Salida de Recuento de filas 1]"
-          TopLeft="1298,309.352272727273">
+          TopLeft="1349.66666666667,304.352272727273">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="55.0584415584437,0"
+              EndConnector="55.0584415584403,0"
               Start="0,0"
-              End="47.5584415584437,0">
+              End="47.5584415584403,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="47.5584415584437,0" />
+                    End="47.5584415584403,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5584,7 +5939,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Fact Table.Paths[Salida de entradas no coincidentes de búsqueda]"
-          TopLeft="1074.80519480519,314.623376623377">
+          TopLeft="1126.47186147186,309.623376623377">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -5728,18 +6083,18 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Fact Table.Paths[Salida de columna derivada]"
-          TopLeft="868.5,318.050324675325">
+          TopLeft="868.5,315.550324675325">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="38.3051948051948,0"
+              EndConnector="89.9718614718618,0"
               Start="0,0"
-              End="30.8051948051948,0">
+              End="82.4718614718618,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="30.8051948051948,0" />
+                    End="82.4718614718618,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5919,6 +6274,65 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Excel ensertion">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Excel ensertion\Origen de OLE DB"
+          TopLeft="156,41" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Excel ensertion\Destino de Excel"
+          TopLeft="162,129" />
+        <EdgeLayout
+          Id="Package\Excel ensertion.Paths[Salida de origen de OLE DB]"
+          TopLeft="241.75,83">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Excel ensertion\Origen de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Excel ensertion\Destino de Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
