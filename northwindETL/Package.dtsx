@@ -11,8 +11,8 @@
   DTS:LocaleID="6154"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="45"
-  DTS:VersionGUID="{B208AB46-F1C7-4BFD-BE06-D375A4E84C99}">
+  DTS:VersionBuild="50"
+  DTS:VersionGUID="{2EFCF781-0DD6-4C4F-9E54-105014D58A3A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -3787,6 +3787,207 @@ where [refTable].[ShipperID] = ?</property>
               </outputs>
             </component>
             <component
+              refId="Package\Load Fact Table\LookUpDuplicates"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Búsqueda;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;6"
+              description="Combina columnas adicionales con el flujo de datos mediante la búsqueda de valores en una tabla. Por ejemplo, se combina la columna 'id. de empleado' con la tabla de empleados para obtener la 'fecha de contratación' y 'el nombre de empleado'. Se recomienda esta transformación cuando hay suficiente espacio en memoria para la tabla de búsqueda."
+              name="LookUpDuplicates"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL que genera la tabla de búsqueda."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[FactSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica una instrucción SQL que usa parámetros para generar la tabla de búsqueda."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[FactSales]) [refTable]
+where [refTable].[OrderID] = ? and [refTable].[ProductID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de conexión utilizado para tener acceso al conjunto de datos de referencia."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de caché de la tabla de búsqueda."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cómo la transformación de búsquedas trata las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el porcentaje de la caché asignado a las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indica si se debe hacer referencia a metadatos en formato XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SalesKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OrderID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CustomerKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EmployeeKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ShipperKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DateKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Quantity" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="UnitPrice" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Discount" dataType="DT_R4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TotalAmount" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
+                  name="ParameterMap">#{Package\Load Fact Table\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[OrderID]};#{Package\Load Fact Table\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[ProductID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina si las claves duplicadas de los datos de referencia se deben tratar como errores cuando se usa el modo de caché."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Fact Table\LookUpDuplicates.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CELESTE.Northwind_DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[CELESTE.Northwind_DW]"
+                  description="Administrador de conexiones utilizado para obtener acceso a los datos de búsqueda."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Fact Table\LookUpDuplicates.Inputs[Entrada de búsqueda]"
+                  name="Entrada de búsqueda">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fact Table\LookUpDuplicates.Inputs[Entrada de búsqueda].Columns[OrderID]"
+                      cachedDataType="i4"
+                      cachedName="OrderID"
+                      lineageId="Package\Load Fact Table\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[OrderID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                          name="JoinToReferenceColumn">OrderID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fact Table\LookUpDuplicates.Inputs[Entrada de búsqueda].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Load Fact Table\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                          name="JoinToReferenceColumn">ProductID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Fact Table\LookUpDuplicates.Outputs[Salida de entradas coincidentes de búsqueda]"
+                  errorOrTruncationOperation="Búsqueda"
+                  exclusionGroup="1"
+                  name="Salida de entradas coincidentes de búsqueda"
+                  synchronousInputId="Package\Load Fact Table\LookUpDuplicates.Inputs[Entrada de búsqueda]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fact Table\LookUpDuplicates.Outputs[Salida de entradas coincidentes de búsqueda].Columns[ProductKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copiar columna"
+                      lineageId="Package\Load Fact Table\LookUpDuplicates.Outputs[Salida de entradas coincidentes de búsqueda].Columns[ProductKey]"
+                      name="ProductKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn">ProductKey</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fact Table\LookUpDuplicates.Outputs[Salida de entradas coincidentes de búsqueda].Columns[DateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copiar columna"
+                      lineageId="Package\Load Fact Table\LookUpDuplicates.Outputs[Salida de entradas coincidentes de búsqueda].Columns[DateKey]"
+                      name="DateKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn">DateKey</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Fact Table\LookUpDuplicates.Outputs[Salida de entradas coincidentes de búsqueda].Columns[CustomerKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copiar columna"
+                      lineageId="Package\Load Fact Table\LookUpDuplicates.Outputs[Salida de entradas coincidentes de búsqueda].Columns[CustomerKey]"
+                      name="CustomerKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn">CustomerKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Fact Table\LookUpDuplicates.Outputs[Salida de entradas no coincidentes de búsqueda]"
+                  description="Salida de búsqueda que trata las filas sin entradas coincidentes en el conjunto de datos de referencia. Utilice esta salida cuando la propiedad NoMatchBehavior esté establecida en 'Enviar las filas sin entradas coincidentes a la salida de entradas no coincidentes'."
+                  exclusionGroup="1"
+                  name="Salida de entradas no coincidentes de búsqueda"
+                  synchronousInputId="Package\Load Fact Table\LookUpDuplicates.Inputs[Entrada de búsqueda]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Fact Table\LookUpDuplicates.Outputs[Salida de error de búsqueda]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de búsqueda"
+                  synchronousInputId="Package\Load Fact Table\LookUpDuplicates.Inputs[Entrada de búsqueda]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fact Table\LookUpDuplicates.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact Table\LookUpDuplicates.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Fact Table\LookUpDuplicates.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact Table\LookUpDuplicates.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Load Fact Table\Origen de OLE DB"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
@@ -4083,7 +4284,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
           <paths>
             <path
               refId="Package\Load Fact Table.Paths[Salida de columna derivada]"
-              endId="Package\Load Fact Table\Recuento de filas.Inputs[Entrada de Recuento de filas 1]"
+              endId="Package\Load Fact Table\LookUpDuplicates.Inputs[Entrada de búsqueda]"
               name="Salida de columna derivada"
               startId="Package\Load Fact Table\Columna derivada.Outputs[Salida de columna derivada]" />
             <path
@@ -4111,6 +4312,11 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
               endId="Package\Load Fact Table\DimDate.Inputs[Entrada de búsqueda]"
               name="Salida de entradas coincidentes de búsqueda"
               startId="Package\Load Fact Table\DimEmployee.Outputs[Salida de entradas coincidentes de búsqueda]" />
+            <path
+              refId="Package\Load Fact Table.Paths[Salida de entradas no coincidentes de búsqueda]"
+              endId="Package\Load Fact Table\Recuento de filas.Inputs[Entrada de Recuento de filas 1]"
+              name="Salida de entradas no coincidentes de búsqueda"
+              startId="Package\Load Fact Table\LookUpDuplicates.Outputs[Salida de entradas no coincidentes de búsqueda]" />
             <path
               refId="Package\Load Fact Table.Paths[Salida de origen de OLE DB]"
               endId="Package\Load Fact Table\DimCustomer.Inputs[Entrada de búsqueda]"
@@ -4149,6 +4355,14 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="179,42"
+          Id="Package\Control de Registros"
+          TopLeft="484,133" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Insert in DimDate"
+          TopLeft="23,46" />
+        <NodeLayout
           Size="194,42"
           Id="Package\Load Dimension Tables"
           TopLeft="223,43" />
@@ -4156,14 +4370,6 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
           Size="158,42"
           Id="Package\Load Fact Table"
           TopLeft="487,46" />
-        <NodeLayout
-          Size="164,42"
-          Id="Package\Insert in DimDate"
-          TopLeft="23,46" />
-        <NodeLayout
-          Size="179,42"
-          Id="Package\Control de Registros"
-          TopLeft="484,133" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
           TopLeft="569.75,88">
@@ -4309,9 +4515,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4333,9 +4537,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4357,9 +4559,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4381,9 +4581,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4580,7 +4778,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4590,7 +4788,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4639,21 +4837,33 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="170,42"
-          Id="Package\Load Fact Table\Origen de OLE DB"
-          TopLeft="17,22" />
-        <NodeLayout
           Size="137,42"
           Id="Package\Load Fact Table\DimShipper"
           TopLeft="53.5,299.25" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Load Fact Table\Destino de OLE DB"
+          TopLeft="1353.05844155844,285.418831168832" />
         <NodeLayout
           Size="148,42"
           Id="Package\Load Fact Table\DimEmployee"
           TopLeft="237.5,294.25" />
         <NodeLayout
+          Size="122,42"
+          Id="Package\Load Fact Table\DimDate"
+          TopLeft="489.821428571429,297.321428571429" />
+        <NodeLayout
           Size="137,42"
           Id="Package\Load Fact Table\DimProduct"
           TopLeft="37,212" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Load Fact Table\Recuento de filas"
+          TopLeft="1134,291.285714285714" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Load Fact Table\Origen de OLE DB"
+          TopLeft="17,22" />
         <NodeLayout
           Size="146,42"
           Id="Package\Load Fact Table\DimCustomer"
@@ -4662,14 +4872,28 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
           Size="168,42"
           Id="Package\Load Fact Table\Columna derivada"
           TopLeft="700.5,298.139610389611" />
-        <NodeLayout
-          Size="122,42"
-          Id="Package\Load Fact Table\DimDate"
-          TopLeft="489.821428571429,297.321428571429" />
-        <NodeLayout
-          Size="175,42"
-          Id="Package\Load Fact Table\Destino de OLE DB"
-          TopLeft="1178.77272727273,288.275974025975" />
+        <EdgeLayout
+          Id="Package\Load Fact Table.Paths[Salida de Recuento de filas 1]"
+          TopLeft="1298,309.352272727273">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55.0584415584437,0"
+              Start="0,0"
+              End="47.5584415584437,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="47.5584415584437,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Fact Table.Paths[Salida de origen de OLE DB]"
           TopLeft="103,64">
@@ -4689,8 +4913,30 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fact Table.Paths[Salida de entradas coincidentes de búsqueda4]"
+          TopLeft="385.5,316.785714285715">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="104.321428571429,0"
+              Start="0,0"
+              End="96.821428571429,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="96.821428571429,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-23.3751171875,19.0234375,46.750234375,11.453125"
+              BoundingBox="-51.4083091517855,5,199.638046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4714,7 +4960,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-87.4081166294645,5,255.9948046875,12.1953125"
+              BoundingBox="-59.2297377232145,5,199.638046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4738,7 +4984,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-108.24740234375,5,255.9948046875,12.1953125"
+              BoundingBox="-80.0690234375,5,199.638046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4762,7 +5008,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-127.99740234375,12.77734375,255.9948046875,12.1953125"
+              BoundingBox="-99.8190234375,12.77734375,199.638046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4786,83 +5032,57 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-127.99740234375,14.65234375,255.9948046875,12.1953125"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Fact Table.Paths[Salida de entradas coincidentes de búsqueda4]"
-          TopLeft="385.5,316.785714285715">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="104.321428571429,0"
-              Start="0,0"
-              End="96.821428571429,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="96.821428571429,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-79.5866880580355,5,255.9948046875,12.1953125"
+              BoundingBox="-99.8190234375,14.65234375,199.638046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="164,42"
-          Id="Package\Load Fact Table\Recuento de filas"
-          TopLeft="952.714285714286,292.142857142857" />
+          Size="168,42"
+          Id="Package\Load Fact Table\LookUpDuplicates"
+          TopLeft="906.805194805195,295.961038961039" />
         <EdgeLayout
           Id="Package\Load Fact Table.Paths[Salida de columna derivada]"
-          TopLeft="868.5,316.141233766234">
+          TopLeft="868.5,318.050324675325">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="84.2142857142858,0"
+              EndConnector="38.3051948051948,0"
               Start="0,0"
-              End="76.7142857142858,0">
+              End="30.8051948051948,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="76.7142857142858,0" />
+                    End="30.8051948051948,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="14.9820256696429,5,46.750234375,11.453125"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Fact Table.Paths[Salida de Recuento de filas 1]"
-          TopLeft="1116.71428571429,311.209415584416">
+          Id="Package\Load Fact Table.Paths[Salida de entradas no coincidentes de búsqueda]"
+          TopLeft="1074.80519480519,314.623376623377">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="62.0584415584442,0"
+              EndConnector="59.1948051948057,0"
               Start="0,0"
-              End="54.5584415584442,0">
+              End="51.6948051948057,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="54.5584415584442,0" />
+                    End="51.6948051948057,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="3.9041035917221,5,46.750234375,11.453125"
+              BoundingBox="-81.0416208400972,5,213.778046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4870,20 +5090,12 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Fact Table\Origen de OLE DB">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load Fact Table\DimShipper">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4901,12 +5113,25 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Table\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Load Fact Table\DimEmployee">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4924,12 +5149,35 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Table\DimDate">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimDate]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Load Fact Table\DimProduct">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4947,12 +5195,20 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Table\Origen de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Load Fact Table\DimCustomer">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4970,7 +5226,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Fact Table\DimDate">
+    design-time-name="Package\Load Fact Table\LookUpDuplicates">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -4980,7 +5236,7 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[DimDate]</Value>
+          type="q3:string">[dbo].[FactSales]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -4989,19 +5245,6 @@ JOIN Orders o ON o.OrderID = od.OrderID;</property>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Fact Table\Destino de OLE DB">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
